@@ -6,9 +6,12 @@ namespace BinarySearchTree
 {
     internal class TreeNode<KEY, VALUE>
     {
-        public KEY Key => _key;
-        private KEY _key;
-        public VALUE Value;
+        private KeyValuePair<KEY, VALUE> _pair;
+
+        public KeyValuePair<KEY, VALUE> KeyValuePair => _pair;
+        
+        public KEY Key => _pair.Key;
+        public VALUE Value => _pair.Value;
         
         public TreeNode<KEY, VALUE> Parent = null;
         public TreeNode<KEY, VALUE> LeftChild = null;
@@ -16,8 +19,12 @@ namespace BinarySearchTree
 
         public TreeNode(KEY key, VALUE value)
         {
-            _key = key;
-            Value = value;
+            _pair = new KeyValuePair<KEY, VALUE>(key, value);
+        }
+
+        public void AmendValue(VALUE value)
+        {
+            _pair = new KeyValuePair<KEY, VALUE>(_pair.Key, value);
         }
     }
 }
